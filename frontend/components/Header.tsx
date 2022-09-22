@@ -19,18 +19,21 @@ const Header = () => {
   }, [activate]);
 
   return (
-    <Container xl>
-      <Row justify="center" align="center" css={{ padding: "0rem 1rem" }}>
+    <Container lg>
+      <Row justify="center" align="center" css={{ padding: "0rem 0rem" }}>
         <Col
           css={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            padding: "1rem 1rem",
+            padding: "1rem 0rem",
           }}
         >
-          <Text size={30} css={{ textGradient: "$primaryTextGradient" }}>
-            Coinio ICO
+          <Text
+            size={30}
+            css={{ textGradient: "$primaryTextGradient", fontWeight: "bold" }}
+          >
+            DAO
           </Text>
 
           <Connect />
