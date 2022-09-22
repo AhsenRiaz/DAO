@@ -4,7 +4,7 @@ import { useWeb3React } from "@web3-react/core";
 import { UserRejectedRequestError } from "@web3-react/injected-connector";
 import { injectedConnector } from "../utils/etherjsConnection/connectors";
 import useMetaMaskOnboarding from "../hooks/useMetaMaskOnBoarding";
-import { NFT_Reveal_Address, NFT_Reveal_ABI } from "../ABIs/contracts";
+import { DAO_Contract, DAO_Contract_Address } from "../ABIs/contracts";
 import { ethers } from "ethers";
 import { getSigner } from "../utils/etherjsConnection/signer";
 import { useAppDispatch } from "../redux/store";
@@ -26,14 +26,14 @@ const Account = () => {
   const initializeContracts = async () => {
     try {
       const signer = await getSigner();
-      let nftRevealContract = new ethers.Contract(
-        NFT_Reveal_Address,
-        NFT_Reveal_ABI,
+      let daoContract = new ethers.Contract(
+        DAO_Contract_Address,
+        DAO_Contract.abi,
         signer
       );
 
       return {
-        nftRevealContract,
+        daoContract,
       };
     } catch (error) {
       console.log("Error in initializing contracts", error);
@@ -49,7 +49,7 @@ const Account = () => {
         if (contracts) {
           dispatch(
             loadContract({
-              nftRevealContract: contracts.nftRevealContract,
+              daoContract: contracts.daoContract,
             })
           );
         }

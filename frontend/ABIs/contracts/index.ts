@@ -1,3 +1,3 @@
-export { abi as NFT_Reveal_ABI } from './NFT.sol/NFT.json'
+export { default as DAO_Contract } from './DAO.sol/DAO.json'
 
-export const NFT_Reveal_Address = '';
+export const DAO_Contract_Address = '';
