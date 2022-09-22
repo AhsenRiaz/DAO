@@ -1,11 +1,8 @@
 import type { NextPage } from "next";
+import IndexContainer from "../components/index/IndexContainer";
 
 const Home: NextPage = () => {
-  return (
-    <div>
-      <h1>Ahsen</h1>
-    </div>
-  );
+  return <IndexContainer />;
 };
 
 export default Home;
