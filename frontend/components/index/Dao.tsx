@@ -14,7 +14,7 @@ const Dao: FC<IDao> = ({ daoCards }) => {
         {daoCards &&
           daoCards.map((dao, i) => {
             return (
-              <Link href={`dao/[id]`} as={`dao/${dao.id}`}>
+              <Link key={i} href={`dao/[id]`} as={`dao/${dao.id}`}>
                 <Grid key={i} xs={12} sm={6} md={4} lg={4}>
                   <Card isHoverable isPressable variant="bordered" key={i}>
                     <Card.Header>

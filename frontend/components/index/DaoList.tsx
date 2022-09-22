@@ -8,6 +8,17 @@ export type DaoList = {
 }[];
 
 const DaoList = () => {
+
+  // const getProposalCount
+
+  const getAllProposals = async () => {
+    try {
+
+    }
+    catch(err){
+
+    }
+  }
   let daoCards: DaoList = [
     {
       title: "Buy This NFT",
