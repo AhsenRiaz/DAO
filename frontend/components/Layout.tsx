@@ -4,13 +4,15 @@ import { createTheme, NextUIProvider } from "@nextui-org/react";
 import Header from "./Header";
 import { Web3ReactProvider } from "@web3-react/core";
 import { getLibrary } from "../utils/etherjsConnection/getLibrary";
+import { Provider } from "react-redux";
+import store from "../redux/store";
 
 type ILayout = {
   children: ReactNode;
 };
 
 const theme = createTheme({
-  type: "dark",
+  type: "light",
   theme: {
     colors: {
       primaryLight: "$blue200",
@@ -43,10 +45,12 @@ const theme = createTheme({
 const Layout = ({ children }: ILayout) => {
   return (
     <Fragment>
-      <Web3ReactProvider getLibrary={getLibrary}>
-        <Header />
-        <NextUIProvider theme={theme}>{children}</NextUIProvider>
-      </Web3ReactProvider>
+      <Provider store={store}>
+        <Web3ReactProvider getLibrary={getLibrary}>
+          <Header />
+          <NextUIProvider theme={theme}>{children}</NextUIProvider>
+        </Web3ReactProvider>
+      </Provider>
     </Fragment>
   );
 };
