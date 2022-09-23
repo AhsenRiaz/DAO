@@ -4,7 +4,7 @@ import { useWeb3React } from "@web3-react/core";
 import { UserRejectedRequestError } from "@web3-react/injected-connector";
 import { injectedConnector } from "../utils/etherjsConnection/connectors";
 import useMetaMaskOnboarding from "../hooks/useMetaMaskOnBoarding";
-import { DAO_Contract, DAO_Contract_Address } from "../ABIs/contracts";
+import { DAO_Contract, DAO_Contract_Address } from "../ABIs/index";
 import { ethers } from "ethers";
 import { getSigner } from "../utils/etherjsConnection/signer";
 import { useAppDispatch } from "../redux/store";
