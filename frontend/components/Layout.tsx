@@ -32,7 +32,8 @@ const theme = createTheme({
         "linear-gradient(112deg, $blue100 -25%, $pink500 -10%, $purple300 90%)",
       link: "#5e1dad",
 
-      myColor: "#00000030",
+      headingFontColor: "#ff758c",
+      descriptionFontColor: "#b76db7",
     },
 
     space: {},
