@@ -48,7 +48,7 @@ export declare namespace DAO {
     string,
     string,
     string,
-    BigNumber,
+    number,
     BigNumber,
     BigNumber,
     BigNumber,
@@ -61,7 +61,7 @@ export declare namespace DAO {
     proposedBy: string;
     title: string;
     description: string;
-    deadline: BigNumber;
+    deadline: number;
     voteUp: BigNumber;
     voteDown: BigNumber;
     maxVotes: BigNumber;
@@ -74,8 +74,9 @@ export declare namespace DAO {
 
 export interface DAOInterface extends utils.Interface {
   functions: {
+    "checkVotingEligibility(uint256,address)": FunctionFragment;
     "countVotes(uint256)": FunctionFragment;
-    "createProposal(string,string,address[])": FunctionFragment;
+    "createProposal(string,string,uint32,address[])": FunctionFragment;
     "getContractOwner()": FunctionFragment;
     "getNextProposal()": FunctionFragment;
     "getProposal(uint256)": FunctionFragment;
@@ -85,6 +86,7 @@ export interface DAOInterface extends utils.Interface {
 
   getFunction(
     nameOrSignatureOrTopic:
+      | "checkVotingEligibility"
       | "countVotes"
       | "createProposal"
       | "getContractOwner"
@@ -95,6 +97,10 @@ export interface DAOInterface extends utils.Interface {
   ): FunctionFragment;
 
   encodeFunctionData(
+    functionFragment: "checkVotingEligibility",
+    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "countVotes",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
@@ -103,6 +109,7 @@ export interface DAOInterface extends utils.Interface {
     values: [
       PromiseOrValue<string>,
       PromiseOrValue<string>,
+      PromiseOrValue<BigNumberish>,
       PromiseOrValue<string>[]
     ]
   ): string;
@@ -124,6 +131,10 @@ export interface DAOInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>, PromiseOrValue<boolean>]
   ): string;
 
+  decodeFunctionResult(
+    functionFragment: "checkVotingEligibility",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "countVotes", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "createProposal",
@@ -223,6 +234,12 @@ export interface DAO extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
+    checkVotingEligibility(
+      _id: PromiseOrValue<BigNumberish>,
+      _voter: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
+
     countVotes(
       _id: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -231,6 +248,7 @@ export interface DAO extends BaseContract {
     createProposal(
       _title: PromiseOrValue<string>,
       _description: PromiseOrValue<string>,
+      _deadline: PromiseOrValue<BigNumberish>,
       _canVote: PromiseOrValue<string>[],
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
@@ -253,6 +271,12 @@ export interface DAO extends BaseContract {
     ): Promise<ContractTransaction>;
   };
 
+  checkVotingEligibility(
+    _id: PromiseOrValue<BigNumberish>,
+    _voter: PromiseOrValue<string>,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
   countVotes(
     _id: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -261,6 +285,7 @@ export interface DAO extends BaseContract {
   createProposal(
     _title: PromiseOrValue<string>,
     _description: PromiseOrValue<string>,
+    _deadline: PromiseOrValue<BigNumberish>,
     _canVote: PromiseOrValue<string>[],
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
@@ -283,6 +308,12 @@ export interface DAO extends BaseContract {
   ): Promise<ContractTransaction>;
 
   callStatic: {
+    checkVotingEligibility(
+      _id: PromiseOrValue<BigNumberish>,
+      _voter: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
     countVotes(
       _id: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -291,6 +322,7 @@ export interface DAO extends BaseContract {
     createProposal(
       _title: PromiseOrValue<string>,
       _description: PromiseOrValue<string>,
+      _deadline: PromiseOrValue<BigNumberish>,
       _canVote: PromiseOrValue<string>[],
       overrides?: CallOverrides
     ): Promise<void>;
@@ -350,6 +382,12 @@ export interface DAO extends BaseContract {
   };
 
   estimateGas: {
+    checkVotingEligibility(
+      _id: PromiseOrValue<BigNumberish>,
+      _voter: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     countVotes(
       _id: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -358,6 +396,7 @@ export interface DAO extends BaseContract {
     createProposal(
       _title: PromiseOrValue<string>,
       _description: PromiseOrValue<string>,
+      _deadline: PromiseOrValue<BigNumberish>,
       _canVote: PromiseOrValue<string>[],
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
@@ -381,6 +420,12 @@ export interface DAO extends BaseContract {
   };
 
   populateTransaction: {
+    checkVotingEligibility(
+      _id: PromiseOrValue<BigNumberish>,
+      _voter: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     countVotes(
       _id: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -389,6 +434,7 @@ export interface DAO extends BaseContract {
     createProposal(
       _title: PromiseOrValue<string>,
       _description: PromiseOrValue<string>,
+      _deadline: PromiseOrValue<BigNumberish>,
       _canVote: PromiseOrValue<string>[],
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
