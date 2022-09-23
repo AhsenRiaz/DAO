@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../redux/store";
 import { DAO } from "../../types/ethers-contracts";
-import Dao from "./Dao";
+import DaoCard from "./DaoCard";
 
 export type DaoList = {
   title: string;
@@ -60,7 +60,7 @@ const DaoList = () => {
 
   return (
     <div style={{ marginTop: "2rem" }}>
-      <Dao daoProposals={daoProposals} />
+      <DaoCard daoProposals={daoProposals} />
     </div>
   );
 };

@@ -7,7 +7,7 @@ interface IDao {
   daoProposals: DAO.ProposalStructOutput[];
 }
 
-const Dao: FC<IDao> = ({ daoProposals }) => {
+const DaoCard: FC<IDao> = ({ daoProposals }) => {
   return (
     <Container lg>
       <Grid.Container gap={3}>
@@ -44,4 +44,4 @@ const Dao: FC<IDao> = ({ daoProposals }) => {
   );
 };
 
-export default Dao;
+export default DaoCard;
