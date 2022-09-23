@@ -23,7 +23,7 @@ contract DAO {
         address proposedBy;
         string title;
         string description;
-        uint deadline;
+        uint32 deadline;
         uint256 voteUp;
         uint256 voteDown;
         uint256 maxVotes;
@@ -69,18 +69,21 @@ contract DAO {
     function createProposal(
         string memory _title,
         string memory _description,
+        uint32 _deadline,
         address[] memory _canVote
     ) external validAddress {
         address proposer = msg.sender;
-        checkProposalEligibility(proposer);
-
+        require(
+            checkProposalEligibility(proposer),
+            "DAO: only nft holder can propose"
+        );
         Proposal storage newProposal = proposals[nextProposal];
         require(newProposal.id == 0, "DAO: proposal already exists");
         newProposal.id = nextProposal;
         newProposal.title = _title;
         newProposal.proposedBy = proposer;
         newProposal.description = _description;
-        newProposal.deadline = block.number + 100;
+        newProposal.deadline = uint32(block.timestamp) + _deadline;
         newProposal.maxVotes = _canVote.length;
         newProposal.canVote = _canVote;
         newProposal.exists = true;
@@ -98,12 +101,10 @@ contract DAO {
      */
     function voteOnProposal(uint256 _id, bool _vote) external validAddress {
         require(proposals[_id].exists == true, "DAO: proposal does not exist");
-        address voter = msg.sender;
-        bool eligible = checkVotingEligibility(_id, voter);
-        require(eligible == true, "DAO: not eligible for voting");
-        require(voteStatus[_id][voter] == false, "DAO: already voted");
+
+        require(voteStatus[_id][msg.sender] == false, "DAO: already voted");
         require(
-            block.number <= proposals[_id].deadline,
+            block.timestamp <= proposals[_id].deadline,
             "DAO: voting time ended"
         );
 
@@ -114,14 +115,7 @@ contract DAO {
             proposal.voteDown++;
         }
 
-        voteStatus[_id][voter] = true;
-        emit ProposalVoted(
-            _id,
-            voter,
-            proposal.voteUp,
-            proposal.voteDown,
-            _vote
-        );
+        voteStatus[_id][msg.sender] = true;
     }
 
     /**
@@ -133,7 +127,10 @@ contract DAO {
 
         require(msg.sender == proposal.proposedBy, "DAO: only owner can call");
         require(proposal.exists == true, "DAO: proposal does not exist");
-        require(block.number > proposal.deadline, "DAO: deadline not finished");
+        require(
+            block.timestamp > proposal.deadline,
+            "DAO: deadline not finished"
+        );
         require(!proposal.voteCounted, "DAO: Vote counted");
 
         if (proposal.voteUp > proposal.voteDown) {
@@ -173,18 +170,25 @@ contract DAO {
         return nextProposal;
     }
 
-    function checkProposalEligibility(address _proposer) private view {
-        uint256 balance = nft.balanceOf(_proposer);
-        require(balance > 0, "DAO: insufficient balance");
-    }
-
-    function checkVotingEligibility(uint _id, address _voter)
+    function checkProposalEligibility(address _proposer)
         private
         view
         returns (bool)
     {
+        uint256 balance = nft.balanceOf(_proposer);
+        if (balance > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    function checkVotingEligibility(uint _id, address _voter)
+        external
+        view
+        returns (bool)
+    {
         for (uint i = 1; i <= proposals[_id].canVote.length; i++) {
-            if (_voter == proposals[_id].canVote[i]) {
+            if (proposals[_id].canVote[i] == _voter) {
                 return true;
             }
         }
