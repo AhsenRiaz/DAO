@@ -1,15 +1,18 @@
-import { useRouter } from "next/router";
+import { GetStaticProps } from "next";
 import Dao from "../../../components/dynamic/dao/Dao";
 
-const dao = () => {
-  const router = useRouter();
-  const { id } = router.query;
-
-  return (
-    <div>
-      <Dao id={id} />
-    </div>
-  );
+const dao = ({ id }: any) => {
+  return <Dao id={id} />;
 };
 
 export default dao;
+
+export const getServerSideProps: GetStaticProps = async (context) => {
+  let id = context.params?.id;
+  console.log("context", context);
+  return {
+    props: {
+      id,
+    },
+  };
+};

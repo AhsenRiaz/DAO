@@ -124,6 +124,7 @@ const Dao: FC<IDao> = ({ id }) => {
           {proposal.canVote.map((voter, i) => {
             return (
               <Text
+                key={i}
                 css={{
                   color: "$descriptionFontColor",
                   fontWeight: "$light",
