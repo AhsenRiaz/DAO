@@ -3,6 +3,7 @@ import { Container, Row, Text, Col } from "@nextui-org/react";
 import { useWeb3React } from "@web3-react/core";
 import { injectedConnector } from "../utils/etherjsConnection/connectors";
 import Connect from "./Connect";
+import Link from "next/link";
 
 const Header = () => {
   const { activate } = useWeb3React();
@@ -29,12 +30,23 @@ const Header = () => {
             padding: "1rem 0rem",
           }}
         >
-          <Text
-            size={30}
-            css={{ textGradient: "$primaryTextGradient", fontWeight: "bold" }}
-          >
-            DAO
-          </Text>
+          <Link href="/">
+            <Text
+              size={30}
+              css={{ textGradient: "$primaryTextGradient", fontWeight: "bold" }}
+            >
+              DAO
+            </Text>
+          </Link>
+
+          <Link href={"/create"}>
+            <Text
+              css={{ cursor: "pointer", textGradient: "$primaryTextGradient" }}
+              size={18}
+            >
+              Create Proposal
+            </Text>
+          </Link>
 
           <Connect />
         </Col>
