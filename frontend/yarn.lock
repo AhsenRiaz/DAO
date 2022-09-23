@@ -641,10 +641,10 @@
   dependencies:
     "bowser" "^2.9.0"
 
-"@next/env@12.2.4":
-  "integrity" "sha512-/gApFXWk5CCLFQJL5IYJXxPQuG5tz5nPX4l27A9Zm/+wJxiwFrRSP54AopDxIv4JRp/rGwcgk/lZS/0Clw8jYA=="
-  "resolved" "https://registry.npmjs.org/@next/env/-/env-12.2.4.tgz"
-  "version" "12.2.4"
+"@next/env@12.2.4-canary.9":
+  "integrity" "sha512-d+GjzdVQDAih+RXalvcdQG7tJhW17NXH0qBZz2gbZGYdOUtSY22gt6wCocSpgB3K1JPeA2x8odM9dW1cjLNcGA=="
+  "resolved" "https://registry.npmjs.org/@next/env/-/env-12.2.4-canary.9.tgz"
+  "version" "12.2.4-canary.9"
 
 "@next/eslint-plugin-next@12.2.4":
   "integrity" "sha512-ChDkUIkJeYWKRx+FdF+EhUgvKtK1wF+Xew4Os7ef3iAjMch5GGBiezw2zGXTa/C0E6potz4j11EpX89mngffug=="
@@ -653,15 +653,15 @@
   dependencies:
     "glob" "7.1.7"
 
-"@next/swc-linux-x64-gnu@12.2.4":
-  "integrity" "sha512-PhXX6NSuIuhHInxPY2VkG2Bl7VllsD3Cjx+pQcS1wTym7Zt7UoLvn05PkRrkiyIkvR+UXnqPUM3TYiSbnemXEw=="
-  "resolved" "https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-12.2.4.tgz"
-  "version" "12.2.4"
+"@next/swc-linux-x64-gnu@12.2.4-canary.9":
+  "integrity" "sha512-Vdc1jSxxS4xsH/4Swo6U4iRucNeibkD8MUCasKeO4aewlT3fHe9PoTovqcMESfj7T6170K/7mRt2pECozriaIA=="
+  "resolved" "https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-12.2.4-canary.9.tgz"
+  "version" "12.2.4-canary.9"
 
-"@next/swc-linux-x64-musl@12.2.4":
-  "integrity" "sha512-GmC/QROiUZpFirHRfPQqMyCXZ+5+ndbBZrMvL74HtQB/CKXB8K1VM+rvy9Gp/5OaU8Rxp48IcX79NOfI2LiXlA=="
-  "resolved" "https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-12.2.4.tgz"
-  "version" "12.2.4"
+"@next/swc-linux-x64-musl@12.2.4-canary.9":
+  "integrity" "sha512-7Ojx3PVFB1S5r0fdWHX7w6mlMNO6Kz9Wf/J3wdA4Udc3czZ/kOxRG02YBygyAfevylVwcmbrwcKCDFOul7Vw7w=="
+  "resolved" "https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-12.2.4-canary.9.tgz"
+  "version" "12.2.4-canary.9"
 
 "@nextui-org/react@^1.0.0-beta.10":
   "integrity" "sha512-cxqsp4QXmKJoiDeoeEmayn3LUgRrHvOhmvfv8fm65CdWZI5Ro18DwBQrD+mdttlZ/OEaiYQXDPSP36p2DALdag=="
@@ -2761,31 +2761,31 @@
   "resolved" "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   "version" "1.4.0"
 
-"next@12.2.4":
-  "integrity" "sha512-b1xlxEozmAWokAXzXsi5vlmU/IfJcFNIJA8dpU5UdkFbyDPio8wwb8mAQ/Y7rGtfTgG/t/u49BiyEA+xAgFvow=="
-  "resolved" "https://registry.npmjs.org/next/-/next-12.2.4.tgz"
-  "version" "12.2.4"
+"next@^12.2.4-canary.9":
+  "integrity" "sha512-lZtjRAPMxKVSM845PDuSsXexjjU++ZEsNsI2gPwuoblyawLSwiROkQm2YszXe6HwXFb5FG3Oqn1bgboTl4S82A=="
+  "resolved" "https://registry.npmjs.org/next/-/next-12.2.4-canary.9.tgz"
+  "version" "12.2.4-canary.9"
   dependencies:
-    "@next/env" "12.2.4"
+    "@next/env" "12.2.4-canary.9"
     "@swc/helpers" "0.4.3"
     "caniuse-lite" "^1.0.30001332"
     "postcss" "8.4.14"
     "styled-jsx" "5.0.2"
     "use-sync-external-store" "1.2.0"
   optionalDependencies:
-    "@next/swc-android-arm-eabi" "12.2.4"
-    "@next/swc-android-arm64" "12.2.4"
-    "@next/swc-darwin-arm64" "12.2.4"
-    "@next/swc-darwin-x64" "12.2.4"
-    "@next/swc-freebsd-x64" "12.2.4"
-    "@next/swc-linux-arm-gnueabihf" "12.2.4"
-    "@next/swc-linux-arm64-gnu" "12.2.4"
-    "@next/swc-linux-arm64-musl" "12.2.4"
-    "@next/swc-linux-x64-gnu" "12.2.4"
-    "@next/swc-linux-x64-musl" "12.2.4"
-    "@next/swc-win32-arm64-msvc" "12.2.4"
-    "@next/swc-win32-ia32-msvc" "12.2.4"
-    "@next/swc-win32-x64-msvc" "12.2.4"
+    "@next/swc-android-arm-eabi" "12.2.4-canary.9"
+    "@next/swc-android-arm64" "12.2.4-canary.9"
+    "@next/swc-darwin-arm64" "12.2.4-canary.9"
+    "@next/swc-darwin-x64" "12.2.4-canary.9"
+    "@next/swc-freebsd-x64" "12.2.4-canary.9"
+    "@next/swc-linux-arm-gnueabihf" "12.2.4-canary.9"
+    "@next/swc-linux-arm64-gnu" "12.2.4-canary.9"
+    "@next/swc-linux-arm64-musl" "12.2.4-canary.9"
+    "@next/swc-linux-x64-gnu" "12.2.4-canary.9"
+    "@next/swc-linux-x64-musl" "12.2.4-canary.9"
+    "@next/swc-win32-arm64-msvc" "12.2.4-canary.9"
+    "@next/swc-win32-ia32-msvc" "12.2.4-canary.9"
+    "@next/swc-win32-x64-msvc" "12.2.4-canary.9"
 
 "object-assign@^4.1.1":
   "integrity" "sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg=="
