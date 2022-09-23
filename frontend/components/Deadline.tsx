@@ -65,7 +65,7 @@ const Deadline: FC<IDeadline> = ({ endTime }) => {
   }, [currentTime, endTime]);
   return (
     <>
-      <Text>
+      <Text css={{ color: "$descriptionFontColor" }}>
         Deadline: {h} : {m} : {s}
       </Text>
     </>

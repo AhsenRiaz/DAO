@@ -97,13 +97,18 @@ const dao = () => {
             <Text css={{ color: "$descriptionFontColor" }} h6>
               Vote For Dao
             </Text>
-            <Button onClick={() => voteOnProposal(true)} color={"gradient"}>
+            <Button
+              disabled={proposal.passed}
+              onClick={() => voteOnProposal(true)}
+              color={"gradient"}
+            >
               Vote For
             </Button>
             <Button
               onClick={() => voteOnProposal(false)}
               css={{ marginTop: "3rem" }}
               color={"gradient"}
+              disabled={proposal.passed}
             >
               Vote Against
             </Button>
@@ -130,9 +135,26 @@ const dao = () => {
               );
             })}
             <Deadline endTime={proposal.deadline} />
-            <Text>Vote For: {parseInt(proposal.voteUp._hex)}</Text>
-            <Text>Vote Against: {parseInt(proposal.voteDown._hex)}</Text>
-            <Button onClick={() => countVotes()}>Count Votes</Button>
+            <Text css={{ color: "$descriptionFontColor" }}>
+              Vote For: {parseInt(proposal.voteUp._hex)}
+            </Text>
+            <Text css={{ color: "$descriptionFontColor" }}>
+              Vote Against: {parseInt(proposal.voteDown._hex)}
+            </Text>
+            <Button  disabled={proposal.passed} onClick={() => countVotes()}>
+              Count Votes
+            </Button>
+            <Text
+              css={{ marginTop: "2rem", color: "$descriptionFontColor" }}
+              h6
+            >
+              Status:
+              {proposal.voteCounted === true
+                ? proposal.passed
+                  ? " Passed"
+                  : " Rejected"
+                : " Pending"}
+            </Text>
           </>
         )}
       </Container>
