@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useAppSelector } from "../../redux/store";
+import { DAO } from "../../types/ethers-contracts";
 import Dao from "./Dao";
 
 export type DaoList = {
@@ -8,34 +10,58 @@ export type DaoList = {
 }[];
 
 const DaoList = () => {
+  const { daoContract } = useAppSelector((state) => state.loadContractsReducer);
 
-  // const getProposalCount
+  const [daoProposals, setDaoProposals] = useState<DAO.ProposalStructOutput[]>(
+    []
+  );
+
+  const getProposalCount = async () => {
+    try {
+      if (daoContract) {
+        let proposalCount: string | number = await (
+          await daoContract.getNextProposal()
+        )._hex;
+        proposalCount = parseInt(proposalCount);
+        console.log("proposal count", proposalCount);
+        return proposalCount;
+      }
+    } catch (error) {
+      console.log("Error in getting proposal count", error);
+    }
+  };
 
   const getAllProposals = async () => {
+    let proposals = [];
     try {
+      if (daoContract) {
+        let proposalCount = await getProposalCount();
+        if (proposalCount) {
+          for (let i = 1; i < proposalCount; i++) {
+            let proposal = await daoContract.getProposal(i);
+            proposals.push(proposal);
+          }
+          if (proposals.length > 0) {
+            setDaoProposals(proposals);
+          }
+        } else {
+          throw "Error: No proposal count";
+        }
+      } else {
+        throw "Error: No Dao Contract";
+      }
+    } catch (error) {}
+  };
 
-    }
-    catch(err){
+  useEffect(() => {
+    getAllProposals();
+  }, [daoContract]);
 
-    }
-  }
-  let daoCards: DaoList = [
-    {
-      title: "Buy This NFT",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo laudantium, officia animi provident id nemo cum ea esse officiis delectus ipsam, aliquid earum! Vero debitis necessitatibus veritatis dignissimos. Similique, voluptatibus",
-      id: "1",
-    },
-    {
-      title: "Buy This NFT",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo laudantium, officia animi provident id nemo cum ea esse officiis delectus ipsam, aliquid earum! Vero debitis necessitatibus veritatis dignissimos. Similique, voluptatibus",
-      id: "2",
-    },
-  ];
+  useEffect(() => {}, [daoProposals]);
+
   return (
     <div style={{ marginTop: "2rem" }}>
-      <Dao daoCards={daoCards} />
+      <Dao daoProposals={daoProposals} />
     </div>
   );
 };
