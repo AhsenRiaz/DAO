@@ -4,7 +4,7 @@ import { ethers } from "hardhat";
 async function main() {
   const Dao = await ethers.getContractFactory("DAO");
   // deploy the contract
-  const dao = await Dao.deploy("0x922b06cb1d709d570ab0fee31639a6d7322d01b2");
+  const dao = await Dao.deploy("0xff05aF051AAa442c8c0d8B768EdbB4f2d32A77A4");
 
   await dao.deployed();
 
