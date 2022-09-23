@@ -14,7 +14,6 @@ const loadContracts = createSlice({
   initialState,
   reducers: {
     loadContract(state, action) {
-      console.log("payload", action.payload);
       const {
         payload: { daoContract },
       } = action;

@@ -23,7 +23,6 @@ const DaoList = () => {
           await daoContract.getNextProposal()
         )._hex;
         proposalCount = parseInt(proposalCount);
-        console.log("proposal count", proposalCount);
         return proposalCount;
       }
     } catch (error) {

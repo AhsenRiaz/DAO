@@ -49,12 +49,6 @@ const CreateProposal = () => {
     d_line = d_line?.toString();
     try {
       if (daoContract) {
-        console.log({
-          deadline: d_line,
-          title,
-          description,
-          arrayOfAddresses,
-        });
         setLoading(true);
         const transaction = daoContract.createProposal(
           title as string,

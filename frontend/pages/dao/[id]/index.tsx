@@ -23,7 +23,6 @@ const dao = () => {
       if (daoContract) {
         let result = await daoContract.getProposal(id as string);
         setProposal(result);
-        console.log("proposal", result);
       }
     } catch (error) {
       console.log("Error in getting dao proposal", error);
@@ -141,7 +140,7 @@ const dao = () => {
             <Text css={{ color: "$descriptionFontColor" }}>
               Vote Against: {parseInt(proposal.voteDown._hex)}
             </Text>
-            <Button  disabled={proposal.passed} onClick={() => countVotes()}>
+            <Button disabled={proposal.passed} onClick={() => countVotes()}>
               Count Votes
             </Button>
             <Text
