@@ -6,3 +6,12 @@ site: https://dao-byahsen.vercel.app/
 
 # DOCS
 docs: http://dao-docs-byahsen.surge.sh/
+
+# STACK USED
+-NextJs
+-Typescript
+-NextUI
+-Solidity
+-EthersJs
+-Hardhat
+-Openzeppelin
